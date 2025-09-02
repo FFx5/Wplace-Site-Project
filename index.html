@@ -1,63 +1,91 @@
 <html>
+  <head>
+    <style>
+      /* Flex container for side images + main box */
+      .flex-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* top-align images and box */
+        flex-wrap: wrap;         /* allows wrapping on narrow screens */
+        gap: 20px;               /* space between items */
+        padding: 20px;
+      }
+
+      .side-img {
+        width: 200px;        /* adjust size as needed */
+        max-width: 100%;     /* shrink on small screens */
+      }
+
+      .main-box {
+        position: relative;
+        background-image: url('yuyuko dies.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: top center;
+        padding: 125px 50px;
+        border-radius: 15px;
+        text-align: center;
+        width: 600px;
+        max-width: 100%;    /* make responsive */
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 15px;
+        z-index: 1;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Stack images vertically on narrow screens */
+      @media (max-width: 800px) {
+        .flex-container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  
   <body style="background-color: rgb(0, 0, 0);">
 
-    <div style="text-align: center;">
-      <img src="satori fumo.png">
-  
-      <div style="position: relative; 
-                  background-image: url('yuyuko dies.png'); 
-                  background-repeat: no-repeat; 
-                  background-size: 100% 100%; 
-                  background-position: top center; 
-                  padding: 125px 50px; 
-                  border-radius: 15px; 
-                  text-align: center; 
-                  margin: 0 auto; 
-                  width: 600px;">
+    <div class="flex-container">
+      <img src="satori fumo.png" style="width: 360px" class="side-img">
 
-        <div style="position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(255, 255, 255, 0.4);
-                    border-radius: 15px;
-                    z-index: 1;">
-        </div>
-
-        <div style="position: relative; z-index: 2;">
+      <div class="main-box">
+        <div class="overlay"></div>
+        <div class="content">
           <div>
-            <a href="https://wplace.live/join?id=0198e987-760e-78b7-a2c1-d77feacc69ad" 
-               target="_blank" 
-               style="font-family: Arial; 
-                      font-size: 32px; 
-                      color: blue;">
+            <a href="https://wplace.live/join?id=0198e987-760e-78b7-a2c1-d77feacc69ad" target="_blank" style="font-family: Arial; font-size: 32px; color: blue;">
               Join the GensokyoDwellers Alliance
             </a>
           </div>
       
           <div style="margin-top: 50px;">
-            <a style="font-family: Arial; 
-                      font-size: 15px; 
-                      color: black;">
+            <a style="font-family: Arial; font-size: 15px; color: black;">
               pretty please...
             </a>
           </div>
       
           <div style="margin-top: 100px;">
-            <a style="font-family: Arial; 
-                      font-size: 22px; 
-                      color: black;">
+            <a style="font-family: Arial; font-size: 22px; color: black;">
               If the link above doesn't work the first time, then open Wplace in another tab, 
               sign in, and click the link again.
             </a>
           </div>
         </div>
       </div>
-  
-      <img src="koishi fumo.png" 
-           style="width: 300px;">
+
+      <img src="koishi fumo.png" style="width: 300px" class="side-img">
     </div>
-    
+
   </body>
 </html>
