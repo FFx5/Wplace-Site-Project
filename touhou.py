@@ -12,7 +12,7 @@ _2hus = ['Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari',
 	 'Byakuren', 'Nazrin', 'Sekibanki', 'Kokoro', 'Yuugi', 
 	 'Suika', 'Lily', 'Letty', 'Sunny', 'Luna', 'Star', 'Satono', 
 	 'Mai', 'Mamizou', 'Minamitsu', 'Ichirin', 'Mike', 'Kisume', 
-	 'Yamame', 'Komachi', 'Kutaka', 'Mima', 'Miko']
+	 'Yamame', 'Komachi', 'Kutaka', 'Mima', 'Miko', 'Joon']
 
 def play():
 	random_2hu = random.choice(_2hus)
