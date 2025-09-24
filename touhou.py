@@ -18,11 +18,11 @@ def play():
 	random_2hu = random.choice(_2hus)
 	guess_count = 1
 	hints_given = 0
-	guess = input('Guess the 2hu I\'m thinking of: ')
+	guess = input('Guess the 2hu I\'m thinking of ("idk" to give up): ')
 	
-	while guess.lower() != random_2hu.lower():
-		guess = input('Nope. Try again: ')
-		guess_count+=1
+	while True:
+		if guess.lower() == random_2hu.lower() or guess.lower() == 'idk':
+			break
 		
 		if guess_count % 5 == 0 and hints_given < 3:
 			hint_ans = input('Do you want a hint? (y/n)')
@@ -33,17 +33,17 @@ def play():
 					
 					if hints_given == 1:
 						print(f'The name is {len(random_2hu)} letters long.')
-						guess = input('Guess the 2hu I\'m thinking of: ')
+						guess = input('Guess the 2hu I\'m thinking of ("idk" to give up): ')
 						guess_count+=1
 						break
 					elif hints_given == 2:
 						print(f'The first letter is {random_2hu[0].lower()}.')
-						guess = input('Guess the 2hu I\'m thinking of: ')
+						guess = input('Guess the 2hu I\'m thinking of ("idk" to give up): ')
 						guess_count+=1
 						break
 					elif hints_given == 3:
 						print(f'The last letter is {random_2hu[-1].lower()}. (This is the last hint.)')
-						guess = input('Guess the 2hu I\'m thinking of: ')
+						guess = input('Guess the 2hu I\'m thinking of ("idk" to give up): ')
 						guess_count+=1
 						break
 				elif hint_ans.lower() == 'n':
@@ -51,8 +51,14 @@ def play():
 					break
 				else:
 					hint_ans = input('No breaking this program on my watch. Try again. (y/n ONLY)')
+		
+		guess = input('Nope. Try again: ')
+		guess_count+=1	
 	
-	print(f'Nice! I was thinking of {random_2hu}!')
+	if guess.lower() == 'idk':
+		print(f'Too bad. I was thinking of {random_2hu}.')
+	else:
+		print(f'Nice! I was thinking of {random_2hu}!')
 
 ans = input('Would you like to guess the 2hu? (y/n)')
 while True:
