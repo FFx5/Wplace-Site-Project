@@ -16,6 +16,7 @@ _2hus = ['Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari',
 
 def play():
 	random_2hu = random.choice(_2hus)
+	print(random_2hu)
 	guess_count = 1
 	hints_given = 0
 	guess = input('Guess the 2hu I\'m thinking of ("idk" to give up): ')
@@ -23,8 +24,7 @@ def play():
 	while True:
 		if guess.lower() == random_2hu.lower() or guess.lower() == 'idk':
 			break
-		
-		if guess_count % 5 == 0 and hints_given < 3:
+		elif guess_count % 5 == 0 and hints_given < 3:
 			hint_ans = input('Do you want a hint? (y/n)')
 			
 			while True:
@@ -48,12 +48,14 @@ def play():
 						break
 				elif hint_ans.lower() == 'n':
 					print('Suit yourself...')
+					guess = input('Nope. Try again: ')
+					guess_count+=1
 					break
 				else:
 					hint_ans = input('No breaking this program on my watch. Try again. (y/n ONLY)')
-		
-		guess = input('Nope. Try again: ')
-		guess_count+=1	
+		elif guess_count % 5 != 0 or hints_given == 3:
+			guess = input('Nope. Try again: ')
+			guess_count+=1
 	
 	if guess.lower() == 'idk':
 		print(f'Too bad. I was thinking of {random_2hu}.')
@@ -61,6 +63,7 @@ def play():
 		print(f'Nice! I was thinking of {random_2hu}!')
 
 ans = input('Would you like to guess the 2hu? (y/n)')
+
 while True:
 	if ans.lower() == 'y':
 		play()
