@@ -16,7 +16,6 @@ _2hus = ['Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari',
 
 def play():
 	random_2hu = random.choice(_2hus)
-	print(random_2hu)
 	guess_count = 1
 	hints_given = 0
 	guess = input('Guess the 2hu I\'m thinking of ("idk" to give up): ')
