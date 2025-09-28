@@ -211,7 +211,7 @@ def submit_guess(*args):
         elif hints_given == 3:
             append_output(f"Hint: The last letter is {random_2hu[-1]}. (Last hint!) (Your guess: {guess})")
     else:
-        append_output("Nope, try again! (Your guess: {guess})")
+        append_output(f"Nope, try again! (Your guess: {guess})")
 
 # Wrap Python functions in proxies for JS
 start_proxy = create_proxy(start_game)
