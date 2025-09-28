@@ -5,8 +5,8 @@
   <title>GensokyoDwellers</title>
 
   <!-- PyScript setup (working CDN) -->
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
-  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
   <style>
     /* Flex container for side images + main box */
@@ -87,6 +87,7 @@
   </style>
 </head>
 <body style="background-color: rgb(0, 0, 0);">
+
   <div class="flex-container">
     <img src="satori fumo.png" style="width: 360px" class="side-img">
     <div class="main-box">
@@ -122,52 +123,57 @@
     <h2>Guess the 2hu!</h2>
     <div id="game-output">Press "Start" to begin.</div>
     <input type="text" id="user-input" placeholder="Enter your guess" />
-    <button id="submit-btn" py-click="submit_guess">Submit</button>
-    <button id="start-btn" py-click="start_game">Start</button>
+    <button id="submit-btn" py-click="submit_guess()">Submit</button>
+    <button id="start-btn" py-click="start_game()">Start</button>
   </div>
 
   <!-- Embedded Python game logic -->
   <py-script>
 import random
-from pyscript import Element
+from js import document
 
-_2hus = ['Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari',
-         'Ran', 'Chen', 'Yuyuko', 'Youmu', 'Satori', 'Koishi', 'Orin',
-         'Okuu', 'Cirno', 'Daiyousei', 'Rumia', 'Meiling', 'Koakuma',
-         'Patchouli', 'Sakuya', 'Remilia', 'Flandre', 'Parsee',
-         'Yuuka', 'Resin', 'Tewi', 'Mokou', 'Kaguya', 'Eirin',
-         'Keine', 'Mystia', 'Aya', 'Momiji', 'Futo', 'Iku', 'Tenshi',
-         'Doremy', 'Yorihime', 'Toyohime', 'Nue', 'Kogasa', 'Alice',
-         'Junko', 'Hecatia', 'Clownpiece', 'Okina', 'Wriggle',
-         'Nareko', 'Aunn', 'Nitori', 'Hina', 'Eiki', 'Kasen', 'Seija',
-         'Byakuren', 'Nazrin', 'Sekibanki', 'Kokoro', 'Yuugi',
-         'Suika', 'Lily', 'Letty', 'Sunny', 'Luna', 'Star', 'Satono',
-         'Mai', 'Mamizou', 'Minamitsu', 'Ichirin', 'Mike', 'Kisume',
-         'Yamame', 'Komachi', 'Kutaka', 'Mima', 'Miko', 'Joon', 'Chimata']
+_2hus = [
+    'Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari',
+    'Ran', 'Chen', 'Yuyuko', 'Youmu', 'Satori', 'Koishi', 'Orin',
+    'Okuu', 'Cirno', 'Daiyousei', 'Rumia', 'Meiling', 'Koakuma',
+    'Patchouli', 'Sakuya', 'Remilia', 'Flandre', 'Parsee',
+    'Yuuka', 'Resin', 'Tewi', 'Mokou', 'Kaguya', 'Eirin',
+    'Keine', 'Mystia', 'Aya', 'Momiji', 'Futo', 'Iku', 'Tenshi',
+    'Doremy', 'Yorihime', 'Toyohime', 'Nue', 'Kogasa', 'Alice',
+    'Junko', 'Hecatia', 'Clownpiece', 'Okina', 'Wriggle',
+    'Nareko', 'Aunn', 'Nitori', 'Hina', 'Eiki', 'Kasen', 'Seija',
+    'Byakuren', 'Nazrin', 'Sekibanki', 'Kokoro', 'Yuugi',
+    'Suika', 'Lily', 'Letty', 'Sunny', 'Luna', 'Star', 'Satono',
+    'Mai', 'Mamizou', 'Minamitsu', 'Ichirin', 'Mike', 'Kisume',
+    'Yamame', 'Komachi', 'Kutaka', 'Mima', 'Miko', 'Joon', 'Chimata'
+]
 
 random_2hu = None
 guess_count = 0
 hints_given = 0
 
-def append_output(msg):
-    el = Element("game-output")
-    el.write(el.element.innerHTML + "<br>" + msg)
+game_output = document.getElementById("game-output")
+user_input = document.getElementById("user-input")
 
-def start_game(event=None):
+def append_output(msg):
+    game_output.innerHTML += "<br>" + msg
+
+def start_game(*args):
     global random_2hu, guess_count, hints_given
     random_2hu = random.choice(_2hus)
     guess_count = 0
     hints_given = 0
+    game_output.innerHTML = ""  # clear previous outputs
     append_output("Game started! Guess the 2hu!")
 
-def submit_guess(event=None):
+def submit_guess(*args):
     global random_2hu, guess_count, hints_given
     if not random_2hu:
         append_output("Click Start first!")
         return
 
-    guess = Element("user-input").element.value.strip()
-    Element("user-input").element.value = ""
+    guess = user_input.value.strip()
+    user_input.value = ""
     guess_count += 1
 
     if guess.lower() == random_2hu.lower():
@@ -187,5 +193,6 @@ def submit_guess(event=None):
     else:
         append_output("Nope, try again!")
   </py-script>
+
 </body>
 </html>
