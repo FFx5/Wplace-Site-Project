@@ -179,11 +179,11 @@ def append_output(msg):
 def start_game(*args):
     global random_2hu, guess_count, hints_given
     random_2hu = random.choice(_2hus)
-    append_output(f"{random_2hu}")
     guess_count = 0
     hints_given = 0
     game_output.innerHTML = ""
     append_output("Game started! Guess the 2hu!")
+    append_output(f"{random_2hu}")
 
 def submit_guess(*args):
     global random_2hu, guess_count, hints_given
