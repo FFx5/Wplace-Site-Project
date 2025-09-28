@@ -1,125 +1,133 @@
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>GensokyoDwellers</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GensokyoDwellers</title>
 
-    <!-- PyScript setup -->
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <!-- PyScript setup -->
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 
-    <style>
-      /* Flex container for side images + main box */
+  <style>
+    /* Flex container for side images + main box */
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .side-img {
+      width: 200px;
+      max-width: 100%;
+    }
+
+    .main-box {
+      position: relative;
+      background-image: url('yuyuko dies.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: top center;
+      padding: 175px 100px;
+      border-radius: 15px;
+      text-align: center;
+      width: 600px;
+      max-width: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 15px;
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 800px) {
       .flex-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start; /* top-align images and box */
-        flex-wrap: wrap;         /* allows wrapping on narrow screens */
-        gap: 20px;               /* space between items */
-        padding: 20px;
+        flex-direction: column;
+        align-items: center;
       }
+    }
 
-      .side-img {
-        width: 200px;        /* adjust size as needed */
-        max-width: 100%;     /* shrink on small screens */
-      }
+    /* Touhou game styling */
+    #touhou-game {
+      margin: 50px auto;
+      text-align: center;
+      color: white;
+      max-width: 600px;
+    }
 
-      .main-box {
-        position: relative;
-        background-image: url('yuyuko dies.png');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-position: top center;
-        padding: 175px 100px;
-        border-radius: 15px;
-        text-align: center;
-        width: 600px;
-        max-width: 100%;    /* make responsive */
-      }
+    #user-input {
+      padding: 5px;
+      margin-top: 10px;
+    }
 
-      .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.4);
-        border-radius: 15px;
-        z-index: 1;
-      }
+    #submit-btn, #start-btn {
+      margin: 10px;
+      padding: 5px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-      .content {
-        position: relative;
-        z-index: 2;
-      }
-
-      /* Stack images vertically on narrow screens */
-      @media (max-width: 800px) {
-        .flex-container {
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-
-      /* Touhou game styling */
-      #touhou-game {
-        margin: 50px auto;
-        text-align: center;
-        color: white;
-      }
-      #user-input {
-        padding: 5px;
-        margin-top: 10px;
-      }
-      #submit-btn, #start-btn {
-        margin: 10px;
-        padding: 5px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body style="background-color: rgb(0, 0, 0);">
-    <div class="flex-container">
-      <img src="satori fumo.png" style="width: 360px" class="side-img">
-      <div class="main-box">
-        <div class="overlay"></div>
-        <div class="content">
-          <div>
-            <a href="https://wplace.live/join?id=0198e987-760e-78b7-a2c1-d77feacc69ad" target="_blank" style="font-family: Arial; font-size: 36px; color: blue;">
-              Join the GensokyoDwellers Alliance
-            </a>
-          </div>
-          <div style="margin-top: 50px;">
-            <a style="font-family: Arial; font-size: 17px; color: black;">
-              pretty please...
-            </a>
-          </div>
-          <div style="margin-top: 100px;">
-            <a style="font-family: Arial; font-size: 24px; color: red; text-shadow: 
-                                                                        -1px -1px 0 white,  
-                                                                         1px -1px 0 white,
-                                                                        -1px  1px 0 white,
-                                                                         1px  1px 0 white;">
-              If you have to sign in after clicking the link, then you will have to sign in and come back here and click it again. 
-              Currently, for some reason, it always says it is invalid right after signing in.
-            </a>
-          </div>
+    #game-output {
+      min-height: 50px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+  <div class="flex-container">
+    <img src="satori fumo.png" style="width: 360px" class="side-img">
+    <div class="main-box">
+      <div class="overlay"></div>
+      <div class="content">
+        <div>
+          <a href="https://wplace.live/join?id=0198e987-760e-78b7-a2c1-d77feacc69ad" target="_blank" style="font-family: Arial; font-size: 36px; color: blue;">
+            Join the GensokyoDwellers Alliance
+          </a>
+        </div>
+        <div style="margin-top: 50px;">
+          <a style="font-family: Arial; font-size: 17px; color: black;">
+            pretty please...
+          </a>
+        </div>
+        <div style="margin-top: 100px;">
+          <a style="font-family: Arial; font-size: 24px; color: red; text-shadow: 
+                                                                      -1px -1px 0 white,  
+                                                                       1px -1px 0 white,
+                                                                      -1px  1px 0 white,
+                                                                       1px  1px 0 white;">
+            If you have to sign in after clicking the link, then you will have to sign in and come back here and click it again. 
+            Currently, for some reason, it always says it is invalid right after signing in.
+          </a>
         </div>
       </div>
-      <img src="koishi fumo.png" style="width: 300px" class="side-img">
     </div>
+    <img src="koishi fumo.png" style="width: 300px" class="side-img">
+  </div>
 
-    <!-- Touhou guessing game section -->
-    <div id="touhou-game">
-      <h2>Guess the 2hu!</h2>
-      <div id="game-output">Press "Start" to begin.</div>
-      <input type="text" id="user-input" placeholder="Enter your guess" />
-      <button py-click="submit_guess">Submit</button>
-      <button py-click="start_game">Start</button>
-    </div>
+  <!-- Touhou guessing game section -->
+  <div id="touhou-game">
+    <h2>Guess the 2hu!</h2>
+    <div id="game-output">Press "Start" to begin.</div>
+    <input type="text" id="user-input" placeholder="Enter your guess" />
+    <button id="submit-btn" py-click="submit_guess">Submit</button>
+    <button id="start-btn" py-click="start_game">Start</button>
+  </div>
 
-    <!-- Embedded Python game logic -->
-    <py-script>
+  <!-- Embedded Python game logic -->
+  <py-script>
 import random
 from pyscript import Element
 
@@ -141,17 +149,22 @@ random_2hu = None
 guess_count = 0
 hints_given = 0
 
+def append_output(msg):
+    el = Element("game-output")
+    current = el.element.innerHTML
+    el.write(current + "<br>" + msg)
+
 def start_game(event=None):
     global random_2hu, guess_count, hints_given
     random_2hu = random.choice(_2hus)
     guess_count = 0
     hints_given = 0
-    Element("game-output").write("Game started! Guess the 2hu!")
+    append_output("Game started! Guess the 2hu!")
 
 def submit_guess(event=None):
     global random_2hu, guess_count, hints_given
     if not random_2hu:
-        Element("game-output").write("Click Start first!")
+        append_output("Click Start first!")
         return
 
     guess = Element("user-input").element.value.strip()
@@ -159,19 +172,21 @@ def submit_guess(event=None):
     guess_count += 1
 
     if guess.lower() == random_2hu.lower():
-        Element("game-output").write(f"Nice! It was {random_2hu}!")
+        append_output(f"Nice! It was {random_2hu}!")
+        random_2hu = None
     elif guess.lower() == "idk":
-        Element("game-output").write(f"Too bad! It was {random_2hu}.")
+        append_output(f"Too bad! It was {random_2hu}.")
+        random_2hu = None
     elif guess_count % 5 == 0 and hints_given < 3:
         hints_given += 1
         if hints_given == 1:
-            Element("game-output").write(f"Hint: The name has {len(random_2hu)} letters.")
+            append_output(f"Hint: The name has {len(random_2hu)} letters.")
         elif hints_given == 2:
-            Element("game-output").write(f"Hint: The first letter is {random_2hu[0]}.")
+            append_output(f"Hint: The first letter is {random_2hu[0]}.")
         elif hints_given == 3:
-            Element("game-output").write(f"Hint: The last letter is {random_2hu[-1]}. (Last hint!)")
+            append_output(f"Hint: The last letter is {random_2hu[-1]}. (Last hint!)")
     else:
-        Element("game-output").write("Nope, try again!")
-    </py-script>
-  </body>
+        append_output("Nope, try again!")
+  </py-script>
+</body>
 </html>
