@@ -42,7 +42,6 @@ def submit_guess(event=None):
     elif guess.lower() == "idk":
         Element("game-output").write(f"Too bad! I was thinking of {random_2hu}.")
     elif guess_count % 5 == 0 and hints_given < 3:
-        global hints_given
         hints_given += 1
         if hints_given == 1:
             Element("game-output").write(f"Hint: The name has {len(random_2hu)} letters.")
