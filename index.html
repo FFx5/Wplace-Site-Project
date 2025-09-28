@@ -205,13 +205,13 @@ def submit_guess(*args):
     elif guess_count % 5 == 0 and hints_given < 3:
         hints_given += 1
         if hints_given == 1:
-            append_output(f"Hint: The name has {len(random_2hu)} letters.")
+            append_output(f"Hint: The name has {len(random_2hu)} letters. (Your guess: {guess})")
         elif hints_given == 2:
-            append_output(f"Hint: The first letter is {random_2hu[0]}.")
+            append_output(f"Hint: The first letter is {random_2hu[0]}. (Your guess: {guess})")
         elif hints_given == 3:
-            append_output(f"Hint: The last letter is {random_2hu[-1]}. (Last hint!)")
+            append_output(f"Hint: The last letter is {random_2hu[-1]}. (Last hint!) (Your guess: {guess})")
     else:
-        append_output("Nope, try again!")
+        append_output("Nope, try again! (Your guess: {guess})")
 
 # Wrap Python functions in proxies for JS
 start_proxy = create_proxy(start_game)
