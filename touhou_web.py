@@ -1,19 +1,19 @@
 import random
 from pyscript import Element
 
-_2hus = ['Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari', 
-	 'Ran', 'Chen', 'Yuyuko', 'Youmu', 'Satori', 'Koishi', 'Orin', 
-	 'Okuu', 'Cirno', 'Daiyousei', 'Rumia', 'Meiling', 'Koakuma', 
-	 'Patchouli', 'Sakuya', 'Remilia', 'Flandre', 'Parsee', 
-	 'Yuuka', 'Resin', 'Tewi', 'Mokou', 'Kaguya', 'Eirin', 
-	 'Keine', 'Mystia', 'Aya', 'Momiji', 'Futo', 'Iku', 'Tenshi', 
-	 'Doremy', 'Yorihime', 'Toyohime', 'Nue', 'Kogasa', 'Alice', 
-	 'Junko', 'Hecatia', 'Clownpiece', 'Okina', 'Wriggle', 
-	 'Nareko', 'Aunn', 'Nitori', 'Hina', 'Eiki', 'Kasen', 'Seija', 
-	 'Byakuren', 'Nazrin', 'Sekibanki', 'Kokoro', 'Yuugi', 
-	 'Suika', 'Lily', 'Letty', 'Sunny', 'Luna', 'Star', 'Satono', 
-	 'Mai', 'Mamizou', 'Minamitsu', 'Ichirin', 'Mike', 'Kisume', 
-	 'Yamame', 'Komachi', 'Kutaka', 'Mima', 'Miko', 'Joon', 'Chimata']
+_2hus = ['Reimu', 'Marisa', 'Sanae', 'Suwako', 'Kanako', 'Yukari',
+         'Ran', 'Chen', 'Yuyuko', 'Youmu', 'Satori', 'Koishi', 'Orin',
+         'Okuu', 'Cirno', 'Daiyousei', 'Rumia', 'Meiling', 'Koakuma',
+         'Patchouli', 'Sakuya', 'Remilia', 'Flandre', 'Parsee',
+         'Yuuka', 'Resin', 'Tewi', 'Mokou', 'Kaguya', 'Eirin',
+         'Keine', 'Mystia', 'Aya', 'Momiji', 'Futo', 'Iku', 'Tenshi',
+         'Doremy', 'Yorihime', 'Toyohime', 'Nue', 'Kogasa', 'Alice',
+         'Junko', 'Hecatia', 'Clownpiece', 'Okina', 'Wriggle',
+         'Nareko', 'Aunn', 'Nitori', 'Hina', 'Eiki', 'Kasen', 'Seija',
+         'Byakuren', 'Nazrin', 'Sekibanki', 'Kokoro', 'Yuugi',
+         'Suika', 'Lily', 'Letty', 'Sunny', 'Luna', 'Star', 'Satono',
+         'Mai', 'Mamizou', 'Minamitsu', 'Ichirin', 'Mike', 'Kisume',
+         'Yamame', 'Komachi', 'Kutaka', 'Mima', 'Miko', 'Joon', 'Chimata']
 
 # --- Game state ---
 random_2hu = None
@@ -33,11 +33,16 @@ def submit_guess(event=None):
     Element("user-input").element.value = ""  # clear box
     guess_count += 1
 
+    if not random_2hu:
+        Element("game-output").write("Click Start first!")
+        return
+
     if guess.lower() == random_2hu.lower():
         Element("game-output").write(f"Nice! It was {random_2hu}!")
     elif guess.lower() == "idk":
         Element("game-output").write(f"Too bad! I was thinking of {random_2hu}.")
     elif guess_count % 5 == 0 and hints_given < 3:
+        global hints_given
         hints_given += 1
         if hints_given == 1:
             Element("game-output").write(f"Hint: The name has {len(random_2hu)} letters.")
@@ -47,7 +52,3 @@ def submit_guess(event=None):
             Element("game-output").write(f"Hint: The last letter is {random_2hu[-1]}. (Last hint!)")
     else:
         Element("game-output").write("Nope, try again!")
-
-# Bind buttons to functions
-Element("start-btn").element.onclick = start_game
-Element("submit-btn").element.onclick = submit_guess
