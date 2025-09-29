@@ -221,8 +221,8 @@ def get_hint(*args):
             append_output("Click Start first!")
             return
     
-    hints_given += 1
     if hints_given < 3:
+        hints_given += 1
         if hints_given == 1:
             append_output(f"Hint: The name has {len(random_2hu)} letters.")
         elif hints_given == 2:
