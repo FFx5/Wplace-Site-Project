@@ -216,7 +216,11 @@ def submit_guess(*args):
         append_output(f"Nope, try again! (Your guess: {guess})")
 
 def get_hint(*args):
-    global hints_given
+    global random_2hu, hints_given
+    if not random_2hu:
+            append_output("Click Start first!")
+            return
+    
     hints_given += 1
     if hints_given < 3:
         if hints_given == 1:
