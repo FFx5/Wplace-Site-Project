@@ -225,8 +225,8 @@ def submit_guess(*args):
 def get_hint(*args):
     global random_2hu, hints_given
     if not random_2hu:
-            append_output("Click Start first!")
-            return
+        append_output("Click Start first!")
+        return
     
     if hints_given < 3:
         hints_given += 1
