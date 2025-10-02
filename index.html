@@ -156,7 +156,7 @@
           <ul>
             <li>Start game: Space</li>
             <li>Submit guess: Enter</li>
-            <li>Get a hint: Left Ctrl</li>
+            <li>Get a hint: Ctrl</li>
           </ul>
         </li>
     </ul>
@@ -250,7 +250,7 @@ def handle_key(event):
         document.getElementById("start-btn").click()
     elif event.key == "Enter":
         document.getElementById("submit-btn").click()
-    elif event.key == "ControlLeft":
+    elif event.key == "Control":
         document.getElementById("hint-btn").click()
 
 # Wrap Python functions in proxies for JS
