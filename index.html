@@ -251,11 +251,12 @@ def handle_key(event):
 start_proxy = create_proxy(start_game)
 submit_proxy = create_proxy(submit_guess)
 hint_proxy = create_proxy(get_hint)
+key_proxy = create_proxy(handle_key)
 
 # Add JS event listeners
 document.getElementById("start-btn").addEventListener("click", start_proxy)
 document.getElementById("submit-btn").addEventListener("click", submit_proxy)
 document.getElementById("hint-btn").addEventListener("click", hint_proxy)
-document.addEventListener("keydown", handle_key)
+document.addEventListener("keydown", key_proxy)
   </script><script-py id="py-0"></script-py>
 </body></html>
