@@ -247,19 +247,19 @@ hint_proxy = create_proxy(get_hint)
 # Add JS event listeners
 document.getElementById("start-btn").addEventListener("click", start_proxy)
 document.addEventListener("keydown", (event) => {
-    if (event.key === "s" || event.key === " ") {  
+    if (event.key == "s" || event.key == " ") {  
         document.getElementById("start-btn").click();
     }
 });
 document.getElementById("submit-btn").addEventListener("click", submit_proxy)
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {  
+    if (event.key == "Enter") {  
         document.getElementById("submit-btn").click();
     }
 });
 document.getElementById("hint-btn").addEventListener("click", hint_proxy)
 document.addEventListener("keydown", (event) => {
-    if (event.key === "h") {  
+    if (event.key == "h") {  
         document.getElementById("hint-btn").click();
     }
 });
