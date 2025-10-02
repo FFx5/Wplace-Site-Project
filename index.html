@@ -137,7 +137,7 @@
     </div>
     
     <h2>Guess the 2hu!</h2>
-    <div style="margin-top: -20px;">Version 2.0.2</div>
+    <div style="margin-top: -20px;">Version 2.1.0</div>
     <div><br>Game info:</div>
     <ul style="text-align: left;">
         <li>The maximum number of hints is 3. (Updated hint system!)</li>
@@ -155,7 +155,7 @@
         <li>I'm sorry that the enter key doesn't submit your guesses. (Something I will add in the future.)</li>
     </ul>
     <div id="game-output"><br>Press "Start" to begin.</div>
-    <button id="hint_btn">Hint</button>
+    <button id="hint-btn">Hint</button>
     <input type="text" id="user-input" placeholder="Enter your guess">
     <button id="submit-btn">Submit</button>
     <button id="start-btn">Start</button>
@@ -246,7 +246,22 @@ hint_proxy = create_proxy(get_hint)
 
 # Add JS event listeners
 document.getElementById("start-btn").addEventListener("click", start_proxy)
+document.addEventListener("keydown", (event) => {
+    if (event.key === "s" || event.key === " ") {  
+        document.getElementById("start-btn").click();
+    }
+});
 document.getElementById("submit-btn").addEventListener("click", submit_proxy)
-document.getElementById("hint_btn").addEventListener("click", hint_proxy)
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {  
+        document.getElementById("submit-btn").click();
+    }
+});
+document.getElementById("hint-btn").addEventListener("click", hint_proxy)
+document.addEventListener("keydown", (event) => {
+    if (event.key === "h") {  
+        document.getElementById("hint-btn").click();
+    }
+});
   </script><script-py id="py-0"></script-py>
 </body></html>
